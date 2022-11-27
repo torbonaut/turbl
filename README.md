@@ -1,3 +1,3 @@
 # turble
 
-A vanilla JS wordle clone.
+A vanilla JS responsive wordle clone.

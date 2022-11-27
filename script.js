@@ -169,6 +169,8 @@ class Turbl {
     #currentWord = '';
     // stores the word to guess
     #turbl = '';
+    // prevent keyboard input
+    #canUseKeyboard = true;
 
     // initialize the game: create game board, initialize keyboard handler and reset game
     constructor() {         
@@ -186,6 +188,8 @@ class Turbl {
         this.#gameStarted = true;
         // and it is not ended of course
         this.#gameEnded = false;
+        // we can use the keyboard
+        this.#canUseKeyboard = true;
         // reset the row to row 1
         this.#row = 1;
         // clear the current word, initially empty
@@ -204,7 +208,7 @@ class Turbl {
 
     gameKeyHandler(key) {
         // dont check keys if game is not started or ended or pressed key is enter with word length < 5
-        if (!this.#gameStarted || this.#gameEnded || (this.#currentWord.length < 5 && key === 'enter')) {
+        if (!this.#canUseKeyboard || !this.#gameStarted || this.#gameEnded || (this.#currentWord.length < 5 && key === 'enter')) {
             GameSounds.play('error');
             return;
         }
@@ -269,6 +273,8 @@ class Turbl {
 
             } else {
                 // word doesnt exist in our list
+                // disable keyboard entry
+                this.#canUseKeyboard = false;
                 // add css class to trigger css error animation
                 document.querySelector(`#game_board > div:nth-child(${this.#row})`).classList.add('error');
                 // play error sound
@@ -279,6 +285,8 @@ class Turbl {
                 setTimeout(() => {
                     document.querySelector(`#game_board > div:nth-child(${this.#row})`).classList.remove('error');
                     GameMessages.showMessage('confirm');
+                    // enable keyboard again
+                    this.#canUseKeyboard = true;
                 }, 3000);
             }
             return;
@@ -385,6 +393,3 @@ class Turbl {
 
 // start the game
 const game = new Turbl();
-
-// TODO german word list
-// TODO add flip animation to game board
