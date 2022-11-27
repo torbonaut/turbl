@@ -1,0 +1,225 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --color-card: #fff;
+    --color-card-wobble: #b3dcb3;
+    --color-card-winner: white;
+    --color-card-error: darkred;
+    --background-card: rgb(43, 54, 37);
+    --color-found: #c8b359;
+    --color-matched: #67a760;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Comfortaa', cursive;
+    color: white;
+    background-color: rgb(23, 34, 27);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+#game_container {
+    overflow: auto;
+    flex: 1 1 auto;
+    max-height: 100vh;
+    max-width: 50vh;
+    text-align: center;
+    margin: 0 4vw
+}
+
+#game_container h1 {
+    flex: 1 1 auto;
+    color: darkgoldenrod;
+    font-size: 5vh;
+    margin: 3vh 0;
+}
+
+#game_board {
+    padding: 0;
+}
+
+#game_board > div.row {
+    display: flex;
+    gap: 1%;
+}
+
+#game_board>div.row.full>div { border-width: 3px; border-color: var(--color-card-wobble); }
+
+#game_board > div.row.full > div > span {
+    animation: wobble 2s linear 0s infinite normal none;
+    color: var(--color-card-wobble);
+    transition: color 0.5s;
+}
+
+#game_board>div.row.full.winner>div>span {
+    animation: winner 1s linear 0s infinite normal none;
+    color: var(--color-card-winner);
+    transition: all 0.5s;
+}
+
+#game_board>div.row.error>div {
+    border-width: 3px;
+    border-color: var(--color-card-error);
+}
+
+#game_board>div.row.error>div>span {
+    animation: wobble 2s linear 0s infinite normal none;
+    color: var(--color-card-error);
+    transition: color 0.5s;
+}
+
+
+#game_board>div>div {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    margin: 0 0 1% 0;
+    border-radius: 5%;
+    font-size: 4vh;
+    flex: 1 1 20%;
+    height: 3em;
+    max-height: 13vh;
+    align-self: center;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-card);
+    color: var(--color-card);
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#game_board div.found {
+    background-color: var(--color-found);
+}
+
+#game_board div.matched {
+    background-color: var(--color-matched);
+}
+
+#game_board div.cursor {
+    border: 3px solid rgba(215, 255, 215, 1);
+}
+
+#game_container .keyboard {
+    margin: 2vh;
+}
+
+#game_container .keyboard>div.row {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#game_container .keyboard>div.row>button {
+    flex: 0 0 auto;
+    width: 8%;
+    line-height: 150%;
+    margin: 1% 1%;
+    font-size: 2.8vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #777;
+    border-radius: 15%;
+    cursor: pointer;
+    box-shadow: 0px 3px 3px #00000099,
+        inset 2px 2px 4px rgba(255, 255, 255, 0.3);
+    -webkit-user-select: none;
+    user-select: none;
+    transition: all 0.3s;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+    background: #333;
+    color: white;
+}
+
+#game_container .keyboard>div.row>button.missing {
+    background-color: rgba(139, 0, 0, 0.5);
+}
+
+#game_container .keyboard>div.row>button.found {
+    background-color: var(--color-found);
+}
+
+#game_container .keyboard>div.row>button.matched {
+    background-color: var(--color-matched);
+}
+
+#game_container .keyboard>div.row>button:active,
+#game_container .keyboard>div.row>button.pressed {
+    transform: scale(0.85);
+    background: #444;
+    outline: none;
+}
+
+#game_container .keyboard>div.row>button:focus {
+    outline: none;
+}
+
+#game_container .keyboard>div.row>button.enter {
+    background-color: #67a76099;
+    font-size: 2vmin;
+}
+
+#game_container .keyboard>div.row>button.delete {
+    background-color: #e45c3a99;
+    font-size: 2vmin;
+}
+
+#message {
+    margin: 2vh;
+    font-size: 1.2vh;
+}
+
+#message a {
+    text-decoration: underline;
+    color: lightskyblue;
+    cursor: pointer;
+}
+
+@keyframes wobble {
+
+    0%,
+    100% {
+        transform-origin: 50% 50%;
+    }
+
+    15% {
+        transform: rotate(-6deg);
+    }
+
+    30% {
+        transform:  rotate(6deg);
+    }
+
+    45% {
+        transform: rotate(-3.6deg);
+    }
+
+    60% {
+        transform: rotate(2.4deg);
+    }
+
+    75% {
+        transform:  rotate(-1.2deg);
+    }
+}
+
+@keyframes winner {
+    0%,
+    100% {
+        font-size: 4vh;
+    }
+
+    50% {
+        font-size: 6vh;
+    }
+}
