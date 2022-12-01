@@ -1,0 +1,25 @@
+{
+  "name": "turbl",
+  "version": "2.0.0",
+  "description": "A vaniila JS responsive multi-player wordle clone.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/torbonaut/turbl.git"
+  },
+  "keywords": [
+    "turbl",
+    "wordle",
+    "game",
+    "multi-player"
+  ],
+  "author": "Torben Gallob",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/torbonaut/turbl/issues"
+  },
+  "homepage": "https://github.com/torbonaut/turbl#readme"
+}
